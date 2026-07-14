@@ -10,7 +10,13 @@
     "build": "react-scripts build",
     "serve": "npm run build && npm run server",
     "prod": "npm run serve",
-    "lint": "eslint src --ext .js,.jsx"
+    "lint": "eslint src --ext .js,.jsx",
+    "test": "node --test \"tests/*.test.js\"",
+    "contracts:build": "forge build",
+    "contracts:test": "forge test -vv",
+    "contracts:coverage": "forge coverage",
+    "contracts:fmt": "forge fmt",
+    "contracts:deploy": "node scripts/deploy-contract.js"
   },
   "keywords": [
     "blockchain",
@@ -18,7 +24,7 @@
     "react",
     "express"
   ],
-  "author": "",
+  "author": "Bill Kaunda",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",

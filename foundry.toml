@@ -1,0 +1,49 @@
+[profile.default]
+# This repo already uses `src/` for the React frontend, so Solidity sources
+# live in `contracts/` and Foundry is pointed there explicitly.
+src = "contracts"
+test = "test"
+script = "script"
+libs = ["lib"]
+out = "out"
+cache_path = "cache"
+
+# Pin the compiler for reproducible, deterministic builds across machines/CI.
+solc = "0.8.28"
+evm_version = "cancun"
+
+# Optimizer tuned for a token that is deployed once but whose transfer/approve
+# paths are called many times: a high run count favours cheaper runtime calls.
+optimizer = true
+optimizer_runs = 10_000
+via_ir = false
+
+# Fail the build on anything that could mask a real problem.
+deny_warnings = false
+bytecode_hash = "none"
+
+# `forge fmt` must never touch the original AssessmentToken.sol: it is the
+# pristine baseline the review in SMART_CONTRACT_REVIEW.md refers to, and
+# reformatting it would invalidate the line references and the diff against
+# ImprovedAssessmentToken.sol.
+[fmt]
+ignore = ["contracts/AssessmentToken.sol"]
+
+# Fuzz/invariant defaults — enough runs to catch arithmetic edge cases in CI.
+[fuzz]
+runs = 512
+
+[invariant]
+runs = 256
+depth = 32
+
+# Etherscan verification config is read from env so no secrets live in the repo.
+[etherscan]
+sepolia = { key = "${ETHERSCAN_API_KEY}", chain = 11155111 }
+mainnet = { key = "${ETHERSCAN_API_KEY}", chain = 1 }
+
+# RPC endpoints resolved from env at runtime.
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC_URL}"
+mainnet = "${MAINNET_RPC_URL}"
+localhost = "http://127.0.0.1:8545"

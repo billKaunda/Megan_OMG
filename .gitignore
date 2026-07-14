@@ -3,3 +3,17 @@
 .env
 *.log
 npm-debug.log*
+
+# Foundry
+/out
+/cache
+/broadcast
+zkout/
+# Keep the record of real (non-local) broadcasts if you want deployment history;
+# for this assessment we ignore all broadcast artifacts.
+
+# Generated coverage reports (regenerate with `make coverage` / `make coverage-lcov`).
+# .gas-snapshot is deliberately NOT ignored: it is committed so `make snapshot-check`
+# can catch unintended gas regressions in review.
+coverage.txt
+lcov.info

@@ -77,6 +77,39 @@ After both servers start you should see:
 | `npm run server` | API server without auto-reload |
 | `npm run build` | Build React for production |
 | `npm run serve` | Build + start production server |
+| `npm test` | Backend regression tests |
+
+> Use `npm test` rather than a bare `node --test`: the latter recurses into the vendored
+> Solidity dependencies under `lib/` and tries to run OpenZeppelin's own test suite.
+
+---
+
+## Smart Contracts (Optional)
+
+The web app above runs without any of this. To work on the Solidity side you also need
+[Foundry](https://getfoundry.sh):
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash && foundryup
+```
+
+Then, from the project root:
+
+```bash
+make install    # fetch pinned Solidity deps (OpenZeppelin, forge-std)
+make test       # 50 tests
+make            # list every contract target
+```
+
+| Command | Description |
+|---|---|
+| `make build` | Compile the contracts |
+| `make test` | Run the full Solidity suite |
+| `make coverage` | Coverage report |
+| `make deploy-local` | Simulate a deploy (no broadcast) |
+
+See [README.md](README.md) for the full contract documentation and
+[SMART_CONTRACT_REVIEW.md](SMART_CONTRACT_REVIEW.md) for the engineering write-up.
 
 ---
 
