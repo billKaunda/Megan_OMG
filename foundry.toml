@@ -18,8 +18,8 @@ optimizer = true
 optimizer_runs = 10_000
 via_ir = false
 
-# Fail the build on anything that could mask a real problem.
-deny_warnings = false
+# Warnings do not fail the build; `make ci` gates on fmt + tests instead.
+deny = "never"
 bytecode_hash = "none"
 
 # `forge fmt` must never touch the original AssessmentToken.sol: it is the
@@ -28,6 +28,13 @@ bytecode_hash = "none"
 # ImprovedAssessmentToken.sol.
 [fmt]
 ignore = ["contracts/AssessmentToken.sol"]
+
+# The erc20-unchecked-transfer lint targets integrators that call an untrusted
+# external token and ignore its bool return. It does not apply here: these
+# contracts ARE the token, and the test suites call a token that reverts on
+# failure rather than returning false — so the rule only produces noise.
+[lint]
+exclude_lints = ["erc20-unchecked-transfer"]
 
 # Fuzz/invariant defaults — enough runs to catch arithmetic edge cases in CI.
 [fuzz]

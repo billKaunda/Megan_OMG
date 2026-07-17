@@ -2,6 +2,10 @@
 
 This repository is a compact full-stack demo for exploring blockchain concepts, interacting with a simplified chain, and reviewing a basic Solidity token contract.
 
+> **Reviewing the Smart Contract Engineer track?** Start with
+> **[REVIEWER_GUIDE.md](REVIEWER_GUIDE.md)** — setup, commands, and verified output in one
+> place. The engineering write-up is [SMART_CONTRACT_REVIEW.md](SMART_CONTRACT_REVIEW.md).
+
 It combines:
 - a layered Express backend for a simplified blockchain
 - a React-based explorer for interacting with the chain

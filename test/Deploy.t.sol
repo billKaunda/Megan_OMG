@@ -56,11 +56,7 @@ contract DeployTest is Test {
     /// @dev The known-good config every test starts from, then mutates one field of.
     function _baseConfig() internal view returns (Deploy.TokenConfig memory) {
         return Deploy.TokenConfig({
-            name: NAME,
-            symbol: SYMBOL,
-            capWhole: CAP_WHOLE,
-            initialWhole: INITIAL_WHOLE,
-            owner: owner
+            name: NAME, symbol: SYMBOL, capWhole: CAP_WHOLE, initialWhole: INITIAL_WHOLE, owner: owner
         });
     }
 
